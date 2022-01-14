@@ -15,13 +15,18 @@ const DataTable = () => {
         totalPages:0
     })
 
-    useEffect(() => {
+    function listPage(){
         axios.get(`${BASE_URL}/sales?page=${activePage}&size=20&sort=date,desc`).then(response => {
             setPage(response.data)
             console.log(`todo array - ${response.data}`)
             console.log(`array pagina - ${page.content}`)
             console.log(`pagina - ${activePage}`)
         })
+    }
+
+    useEffect(() => {
+        listPage()
+        console.log(page)
     },[activePage])
 
     const changePage = (index: number) => {
